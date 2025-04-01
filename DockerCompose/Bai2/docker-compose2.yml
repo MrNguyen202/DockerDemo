@@ -1,0 +1,28 @@
+version: '3'  # Có thể giữ hoặc xóa dòng này
+
+services:
+  # Dịch vụ MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: sapassword
+      MYSQL_DATABASE: yalo
+      MYSQL_USER: root
+      MYSQL_PASSWORD: sapassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: always
+    networks:
+      - app-network
+
+# Định nghĩa networks
+networks:
+  app-network:
+    driver: bridge
+
+# Định nghĩa volumes
+volumes:
+  mysql_data:
